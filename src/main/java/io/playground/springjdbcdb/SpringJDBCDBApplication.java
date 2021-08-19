@@ -9,14 +9,14 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+// @SpringBootApplication
 @Slf4j
-public class SpringjdbcdbApplication implements CommandLineRunner {
+public class SpringJDBCDBApplication implements CommandLineRunner {
 
   @Autowired PersonJDBCDAO personJDBCDAO;
 
   public static void main(String[] args) {
-    SpringApplication.run(SpringjdbcdbApplication.class, args);
+    SpringApplication.run(SpringJDBCDBApplication.class, args);
   }
 
   @Override
