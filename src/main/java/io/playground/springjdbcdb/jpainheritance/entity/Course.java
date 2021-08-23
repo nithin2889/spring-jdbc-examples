@@ -1,5 +1,6 @@
 package io.playground.springjdbcdb.jpainheritance.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +47,7 @@ public class Course {
   private List<Review> reviews = new ArrayList<>();
 
   @ManyToMany(mappedBy = "courses")
+  @JsonIgnore
   private List<Student> students = new ArrayList<>();
 
   public Course(String name) {
