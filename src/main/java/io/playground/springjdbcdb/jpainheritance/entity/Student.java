@@ -3,6 +3,7 @@ package io.playground.springjdbcdb.jpainheritance.entity;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -28,6 +29,9 @@ public class Student {
   @OneToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "passport_id")
   private Passport passport;
+
+  @Embedded
+  private Address address;
 
   @ManyToMany
   @JoinTable(

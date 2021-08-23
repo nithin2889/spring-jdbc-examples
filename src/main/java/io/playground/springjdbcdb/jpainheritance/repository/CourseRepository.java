@@ -2,6 +2,7 @@ package io.playground.springjdbcdb.jpainheritance.repository;
 
 import io.playground.springjdbcdb.jpainheritance.entity.Course;
 import io.playground.springjdbcdb.jpainheritance.entity.Review;
+import io.playground.springjdbcdb.jpainheritance.entity.ReviewRating;
 import java.util.List;
 import javax.persistence.EntityManager;
 import lombok.extern.slf4j.Slf4j;
@@ -87,8 +88,8 @@ public class CourseRepository {
     log.info("course getReviews() -> {}", course.getReviews());
 
     // add 2 reviews
-    Review review1 = new Review("2.5", "Okay-ish course");
-    Review review2 = new Review("3.5", "Above average course");
+    Review review1 = new Review(ReviewRating.TWO, "Okay-ish course");
+    Review review2 = new Review(ReviewRating.THREE, "Above average course");
 
     /*since review is the owning side of the relationship we need to tell JPA which
     course the review is associated with.*/

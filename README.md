@@ -37,9 +37,25 @@ good in a decently consistent way.
 There are 2 @Transactional annotations. One from Spring Framework and the other from JPA. 
 
 * What is the difference between the two?
-1. Assume, in a single transaction you are making a change to 2 databases, and also making a change over an MQ. In this
-scenario we need complicated transaction management. @Transactional annotation from JPA will be able to manage
-transactions over a single database. However, if you would want to manage transactions across multiple databases and
-queues, then the recommended one to use is the Spring transactional annotation.
-2. Also, with the Spring version of @Transactional annotation, we can decide the isolation level
+1. Assume, in a single transaction you are making a change to 2 databases, and also making a change over an MQ.
+In this scenario we need complicated transaction management. @Transactional annotation from JPA will be able to 
+manage transactions over a single database. However, if you would want to manage transactions across multiple
+databases and queues, then the recommended one to use is the Spring transactional annotation.
 
+2. Also, with the Spring version of @Transactional annotation, we can decide the isolation level
+---------------------------------------------------------------------------------------------------------------
+JPA Entity Life Cycle Methods:
+1. ***PostLoad*** - This would be called as soon as the entity is retrieved and loaded.
+
+2. ***PostPersist*** - This would be called after the entity is persisted to the database.
+
+3. ***PostRemove*** - This would be called after the entity is removed from the database.
+
+4. ***PostUpdate*** - This would be called after an update to an entity is fired to the database.
+
+5. ***PrePersist*** - This would be called before the entity is persisted to the database.
+
+6. ***PreRemove*** - This would be called before the entity is removed from the database.
+
+7. ***PreUpdate*** - This would be called before an update to an entity is fired to the database.
+---------------------------------------------------------------------------------------------------------------

@@ -32,6 +32,19 @@ class CourseRepositoryTest {
   }
 
   @Test
+  @Transactional
+  void findById_FirstLevelCache() {
+    Course course = courseRepository.findById(10001L);
+    log.info("First course retrieved {}", course);
+
+    Course course2 = courseRepository.findById(10001L);
+    log.info("First course retrieved again {}", course2);
+
+    assertEquals("JPA in 50 Steps", course.getName());
+    assertEquals("JPA in 50 Steps", course2.getName());
+  }
+
+  @Test
   void findById_JPQL_RawType() {
     Query query = em.createQuery("Select c from Course c");
     List courses = query.getResultList();
@@ -55,14 +68,14 @@ class CourseRepositoryTest {
 
   @Test
   void findById_NativeQuery_Basic() {
-    Query query = em.createNativeQuery("select * from course", Course.class);
+    Query query = em.createNativeQuery("select * from course where is_deleted = 0", Course.class);
     List courses = query.getResultList();
     log.info("select * from course -> {}", courses);
   }
 
   @Test
   void findById_NativeQuery_PositionalParameter() {
-    Query query = em.createNativeQuery("select * from course where id = ?", Course.class);
+    Query query = em.createNativeQuery("select * from course where id = ? and is_deleted = 0", Course.class);
     query.setParameter(1, 10001L);
     List courses = query.getResultList();
     log.info("select * from course where id = ? -> {}", courses);
@@ -70,7 +83,7 @@ class CourseRepositoryTest {
 
   @Test
   void findById_NativeQuery_NamedParameter() {
-    Query query = em.createNativeQuery("select * from course where id = :id", Course.class);
+    Query query = em.createNativeQuery("select * from course where id = :id and is_deleted = 0", Course.class);
     query.setParameter("id", 10001L);
     List courses = query.getResultList();
     log.info("select * from course where id = ? -> {}", courses);

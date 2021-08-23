@@ -1,6 +1,7 @@
 package io.playground.springjdbcdb.jpainheritance.repository;
 
 import io.playground.springjdbcdb.SpringDemoApplication;
+import io.playground.springjdbcdb.jpainheritance.entity.Address;
 import io.playground.springjdbcdb.jpainheritance.entity.Course;
 import io.playground.springjdbcdb.jpainheritance.entity.Passport;
 import io.playground.springjdbcdb.jpainheritance.entity.Student;
@@ -40,6 +41,16 @@ class StudentRepositoryTest {
   @Transactional
   void retrieveStudentAndPassport() {
     Student student = em.find(Student.class, 20001L);
+    log.info("Student details -> {}", student);
+    log.info("Passport details -> {}", student.getPassport());
+  }
+
+  @Test
+  @Transactional
+  void setAddressDetailsForAStudent() {
+    Student student = em.find(Student.class, 20001L);
+    student.setAddress(new Address("No. 1706", "BSK 1st Stage", "Bangalore"));
+    em.flush();
     log.info("Student details -> {}", student);
     log.info("Passport details -> {}", student.getPassport());
   }

@@ -1,5 +1,9 @@
 package io.playground.springjdbcdb.jpainheritance.entity;
 
-public class ReviewRating {
-
+public enum ReviewRating {
+  ONE,
+  TWO,
+  THREE,
+  FOUR,
+  FIVE
 }
